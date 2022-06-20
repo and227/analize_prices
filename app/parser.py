@@ -65,9 +65,7 @@ def calculate_update_season_coefficient(statement, update_month: str) -> float:
     price_data = read_sql(sql=statement, con=engine)
     price_data["date"] = to_datetime(price_data["date"])
     price_data.set_index("date", inplace=True)
-    print(price_data)
     coefficients_data = calculate_season_coefficients(price_data)
-    print(coefficients_data)
     coefficient = coefficients_data.loc[update_month, "coefficient"]
 
     return coefficient
